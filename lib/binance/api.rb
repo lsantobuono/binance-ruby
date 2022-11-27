@@ -14,7 +14,7 @@ module Binance
         raise Error.new(message: "interval is required") unless interval
         raise Error.new(message: "symbol is required") unless symbol
         params = { endTime: endTime, interval: interval, limit: limit, startTime: startTime, symbol: symbol }
-        Request.send!(api_key_type: :read_info, path: "/api/v1/klines", params: params,
+        Request.send!(api_key_type: :read_info, path: "/api/v3/klines", params: params,
                       api_key: api_key, api_secret_key: api_secret_key)
       end
 
@@ -35,7 +35,7 @@ module Binance
       end
 
       def exchange_info!(api_key: nil, api_secret_key: nil)
-        Request.send!(api_key_type: :read_info, path: "/api/v1/exchangeInfo",
+        Request.send!(api_key_type: :read_info, path: "/api/v3/exchangeInfo?permissions=SPOT",
                       api_key: api_key, api_secret_key: api_secret_key)
       end
 
